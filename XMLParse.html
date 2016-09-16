@@ -8,14 +8,14 @@
             function Main(){               
                 url=document.getElementById("dest").value;              
                 xmlDoc=loadXML(url);
-                var html=processXml(xmlDoc);
-                alert(html);
-                document.write(html);
+                var content=processXml(xmlDoc);
+                var win=window.open();
+                win.document.write(content);
             }
             
             
             function processXml(xmlDoc){
-                display="<!DOCTYPE html><html><head></head><body>";
+                display="<!DOCTYPE html><html><head><title>Online Newspaper Listings</title></head><body>";
                 table="<table border='1'align='center'>";
                 table=table+"<tr><th>Top Slot</th><th>Newspaper</th><th>City/State</th><th>HomePage</th><th>Logo</th></tr>";
                 var total=xmlDoc.getElementsByTagName("Row");
@@ -71,11 +71,33 @@
                     // code for IE6, IE5
                     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
                 }
-                xmlhttp.open("GET",url,false); //open, send, responseXML are
-                xmlhttp.send(); //properties of XMLHTTPRequest
+                    if (xmlhttp!=null)
+                {
+                    xmlhttp.onreadystatechange=state_Change;
+                    xmlhttp.open("GET",url,false); //open, send, responseXML are
+                    xmlhttp.send(); //properties of XMLHTTPRequest
+                }
+                    else
+                {
+                    alert("Your browser does not support XMLHTTP.");
+                }
+                
                 var xmlDoc=xmlhttp.responseXML;
                 return xmlDoc;
             }
+            function state_Change(){
+                if (xmlhttp.readyState==4)
+                {// 4 = "loaded"
+                    if (xmlhttp.status==200)
+                            {// 200 = OK
+                    // ...our code here...
+                            }
+                    else
+                {
+                alert("Problem retrieving XML data, status code:"+xmlhttp.status);
+            }
+  }
+}
             
         </script>
     </head> 
