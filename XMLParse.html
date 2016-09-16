@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript">
+            var display;
+            var table;
+ 
+            function Main(){               
+                url=document.getElementById("dest").value;              
+                xmlDoc=loadXML(url);
+                var html=processXml(xmlDoc);
+                alert(html);
+                document.write(html);
+            }
+            
+            
+            function processXml(xmlDoc){
+                display="<!DOCTYPE html><html><head></head><body>";
+                table="<table border='1'>";
+                table=table+"<tr><th>Top Slot</th><th>Newspaper</th><th>City/State</th><th>HomePage</th><th>Logo</th></tr>";
+                var total=xmlDoc.getElementsByTagName("Row");
+     
+                for(var i=1;i<=2;i++){
+                    
+                    addItem(xmlDoc,i);
+                }
+                table=table+"</table>";
+                display=display+table+"</body></html>";
+                return display;
+            }
+            function addItem(xmlDoc,i){
+                table=table+"<tr>"
+                addSlot(xmlDoc,i);
+                addName(xmlDoc,i);
+                addLocation(xmlDoc,i);
+                addHomePage(xmlDoc,i);
+                addLogo(xmlDoc,i);
+                table=table+"</tr>"
+
+            }
+            function addSlot(xmlDoc,i){
+                table=table+"<td>"+i+"</td>"
+            }
+            function addName(xmlDoc,i){
+                table=table+"<td>"+xmlDoc.getElementsByTagName("Newspaper")[i].firstChild.nodeValue+"</td>"
+            }
+            function addLocation(xmlDoc,i){
+                table=table+"<td>";
+                table=table+"<ul><li>"+xmlDoc.getElementsByTagName("City")[i].firstChild.nodeValue+"</li><li>"+xmlDoc.getElementsByTagName("State")[i].firstChild.nodeValue+"</li>";
+                table=table+"</td>";
+            }
+            function addHomePage(xmlDoc,i){
+                table=table+"<td>";
+                table=table+"<a href='"+xmlDoc.getElementsByTagName("HomePage")[i].firstChild.nodeValue+"'>"+xmlDoc.getElementsByTagName("HomePage")[i].firstChild.nodeValue+"</a>"
+                table=table+"</td>";
+            }
+            function addLogo(xmlDoc,i){
+                table=table+"<td>"; 
+                table=table+"<img src="+xmlDoc.getElementsByTagName("Logo")[i].firstChild.nodeValue+">"
+                table=table+"</td>";                
+            }
+            
+            function loadXML(url) {
+                if (window.XMLHttpRequest)
+                {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp=new XMLHttpRequest();
+                }
+                else
+                {
+                    // code for IE6, IE5
+                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.open("GET",url,false); //open, send, responseXML are
+                xmlhttp.send(); //properties of XMLHTTPRequest
+                var xmlDoc=xmlhttp.responseXML;
+                return xmlDoc;
+            }
+            
+        </script>
+    </head> 
+    <body>
+        <h>Enter URL for Newspaper List XML File</h>
+        <form>
+        <input type="text" id="dest"/>
+        <input type="submit" value="Submit Query!" onclick="Main()"/>
+        </form>
+    </body>
+</html>    
