@@ -73,7 +73,6 @@
                 }
                     if (xmlhttp!=null)
                 {
-                    xmlhttp.onreadystatechange=state_Change;
                     xmlhttp.open("GET",url,false); //open, send, responseXML are
                     xmlhttp.send(); //properties of XMLHTTPRequest
                 }
@@ -82,23 +81,19 @@
                     alert("Your browser does not support XMLHTTP.");
                 }
                 
+                if(xmlhttp.responseXML==null)
+                {
+                    if(xmlhttp.status==404)
+                    alert("404, XMLFile not exists");
+                   
+                    if(xmlhttp.status==200)
+                    alert("200, But XMLFile Error");
+                }
+                
                 var xmlDoc=xmlhttp.responseXML;
                 return xmlDoc;
             }
-            function state_Change(){
-                if (xmlhttp.readyState==4)
-                {// 4 = "loaded"
-                    if (xmlhttp.status==200)
-                            {// 200 = OK
-                    // ...our code here...
-                            }
-                    else
-                {
-                alert("Problem retrieving XML data, status code:"+xmlhttp.status);
-            }
-  }
-}
-            
+
         </script>
     </head> 
     <body style="text-align:center">
