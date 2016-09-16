@@ -19,10 +19,10 @@
                 table="<table border='1'>";
                 table=table+"<tr><th>Top Slot</th><th>Newspaper</th><th>City/State</th><th>HomePage</th><th>Logo</th></tr>";
                 var total=xmlDoc.getElementsByTagName("Row");
-     
-                for(var i=1;i<=2;i++){
+              
+                for(i=1;i<=total.length;i++){
                     
-                    addItem(xmlDoc,i);
+                    addItem(xmlDoc,i-1);
                 }
                 table=table+"</table>";
                 display=display+table+"</body></html>";
