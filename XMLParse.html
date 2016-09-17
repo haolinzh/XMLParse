@@ -17,7 +17,9 @@
             function processXml(xmlDoc){
                 display="<!DOCTYPE html><html><head><title>Online Newspaper Listings</title></head><body>";
                 table="<table border='1'align='center'>";
-                table=table+"<tr><th>Top Slot</th><th>Newspaper</th><th>City/State</th><th>HomePage</th><th>Logo</th></tr>";
+//                table=table+"<tr><th>Top Slot</th><th>Newspaper</th><th>City/State</th><th>HomePage</th><th>Logo</th></tr>";
+                addTitle(xmlDoc);
+                
                 var total=xmlDoc.getElementsByTagName("Row");
               
                 for(i=1;i<=total.length;i++){
@@ -27,6 +29,16 @@
                 table=table+"</table>";
                 display=display+table+"</body></html>";
                 return display;
+            }
+            
+            function addTitle(xmlDoc){
+                table=table+"<tr>"
+                var title=xmlDoc.getElementsByTagName("Data");
+                for(i=0;i<title.length;i++){
+                    table=table+"<th>"+title[i].firstChild.nodeValue+"</th>"
+                }
+                table=table+"</tr>"            
+        
             }
             function addItem(xmlDoc,i){
                 table=table+"<tr>"
