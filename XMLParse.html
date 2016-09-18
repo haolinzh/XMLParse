@@ -4,6 +4,7 @@
         <script type="text/javascript">
             var display;
             var table;
+            var title;
  
             function Main(){               
                 url=document.getElementById("dest").value;              
@@ -17,9 +18,9 @@
             function processXml(xmlDoc){
                 display="<!DOCTYPE html><html><head><title>Online Newspaper Listings</title></head><body>";
                 table="<table border='1'align='center'>";
-//                table=table+"<tr><th>Top Slot</th><th>Newspaper</th><th>City/State</th><th>HomePage</th><th>Logo</th></tr>";
+
                 addTitle(xmlDoc);
-                
+                                
                 var total=xmlDoc.getElementsByTagName("Row");
               
                 for(i=1;i<=total.length;i++){
@@ -33,7 +34,7 @@
             
             function addTitle(xmlDoc){
                 table=table+"<tr>"
-                var title=xmlDoc.getElementsByTagName("Data");
+                title=xmlDoc.getElementsByTagName("Data");
                 for(i=0;i<title.length;i++){
                     table=table+"<th>"+title[i].firstChild.nodeValue+"</th>"
                 }
@@ -41,6 +42,7 @@
         
             }
             function addItem(xmlDoc,i){
+                
                 table=table+"<tr>"
                 addSlot(xmlDoc,i);
                 addName(xmlDoc,i);
@@ -51,10 +53,11 @@
 
             }
             function addSlot(xmlDoc,i){
-                table=table+"<td>"+(i+1)+"</td>"
+                table=table+"<td>"+(i+1)+"</td>";
             }
             function addName(xmlDoc,i){
-                table=table+"<td>"+xmlDoc.getElementsByTagName("Newspaper")[i].firstChild.nodeValue+"</td>"
+//              var Name=title[1].firstChild.nodeValue;
+                table=table+"<td>"+xmlDoc.getElementsByTagName("Newspaper")[i].firstChild.nodeValue+"</td>";
             }
             function addLocation(xmlDoc,i){
                 table=table+"<td>";
