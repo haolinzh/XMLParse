@@ -121,6 +121,9 @@
                     alert("200, But XMLFile Error");
                 }
                 
+                if(xmlhttp.responseXML.documentElement.nodeName=="parsererror")
+                    alert("XMLFile Error");
+                
                 var xmlDoc=xmlhttp.responseXML;
                 return xmlDoc;
             }
