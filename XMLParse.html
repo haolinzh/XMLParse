@@ -60,9 +60,25 @@
                 table=table+"<td>"+xmlDoc.getElementsByTagName("Newspaper")[i].firstChild.nodeValue+"</td>";
             }
             function addLocation(xmlDoc,i){
-                table=table+"<td>";
-                table=table+"<ul><li>"+xmlDoc.getElementsByTagName("City")[i].firstChild.nodeValue+"</li><li>"+xmlDoc.getElementsByTagName("State")[i].firstChild.nodeValue+"</li>";
-                table=table+"</td>";
+                table=table+"<td><ul>";
+                var cityvalue;
+                var statevalue;
+                var city=xmlDoc.getElementsByTagName("City");
+                var state=xmlDoc.getElementsByTagName("State");
+                
+                if(city[i].innerHTML=="")
+                    cityvalue="N.A.";
+                else
+                    cityvalue=city[i].firstChild.nodeValue;
+                table=table+"<li>"+cityvalue+"</li>";
+                
+                if(state[i].innerHTML=="")
+                    statevalue="N.A.";
+                else
+                    statevalue=state[i].firstChild.nodeValue;
+                table=table+"<li>"+statevalue+"</li>";
+                
+                table=table+"</ul></td>";
             }
             function addHomePage(xmlDoc,i){
                 table=table+"<td>";

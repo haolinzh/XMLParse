@@ -13,8 +13,8 @@
     <Slot>1</Slot>
     <Newspaper>The New York Times</Newspaper>
     <Location>
-        <City>New York</City>
-        <State>NY</State>
+        <City></City>
+        <State></State>
     </Location>
     <HomePage>http://www.nytimes.com</HomePage>
     <Logo>http://cs-server.usc.edu:45678/hw/hw4/NYT_logo.png</Logo>
