@@ -53,14 +53,31 @@
                 table=table+"</tr>"
 
             }
+            
             function addSlot(xmlDoc,i){
-                table=table+"<td>"+(i+1)+"</td>";
+                table=table+"<td>";
+                var slotvalue;
+                var slot=xmlDoc.getElementsByTagName("Slot");
+                if(slot[i].innerHTML=="")
+                    slotvalue="N.A.";
+                else
+                    slotvalue=slot[i].firstChild.nodeValue;
+                table=table+slotvalue;
+                table=table+"</td>"
             }
+            
             function addName(xmlDoc,i){
-
-                table=table+"<td>"
-                    +xmlDoc.getElementsByTagName("Newspaper")[i].firstChild.nodeValue+"</td>";
+                table=table+"<td>";
+                var namevalue;
+                var name=xmlDoc.getElementsByTagName("Newspaper");
+                if(name[i].innerHTML=="")
+                    namevalue="N.A.";
+                else
+                    namevalue=name[i].firstChild.nodeValue;
+                table=table+namevalue;
+                table=table+"</td>"
             }
+            
             function addLocation(xmlDoc,i){
                 table=table+"<td><ul>";
                 var cityvalue;
@@ -84,12 +101,32 @@
             }
             function addHomePage(xmlDoc,i){
                 table=table+"<td>";
-                table=table+"<a href='"+xmlDoc.getElementsByTagName("HomePage")[i].firstChild.nodeValue+"'>"+xmlDoc.getElementsByTagName("HomePage")[i].firstChild.nodeValue+"</a>"
+                var pagevalue;
+                
+                var page=xmlDoc.getElementsByTagName("HomePage");
+                if(page[i].innerHTML==""){
+                    pagevalue="N.A.";
+                    table=table+pagevalue;
+                    }
+                else{
+                    pagevalue=page[i].firstChild.nodeValue;  
+                    table=table+"<a href='"+pagevalue+"'>"+pagevalue+"</a>"
+                    }
                 table=table+"</td>";
             }
             function addLogo(xmlDoc,i){
-                table=table+"<td>"; 
-                table=table+"<img src="+xmlDoc.getElementsByTagName("Logo")[i].firstChild.nodeValue+">"
+                table=table+"<td>";
+                var logovalue;
+                
+                var logo=xmlDoc.getElementsByTagName("Logo")
+                if(logo[i].innerHTML==""){
+                    logovalue="N.A."
+                    table=table+logovalue;
+                }
+                else{
+                    logovalue=logo[i].firstChild.nodeValue;
+                    table=table+"<img src="+logovalue+">"
+                }               
                 table=table+"</td>";                
             }
             
