@@ -10,7 +10,8 @@
                 url=document.getElementById("dest").value;              
                 xmlDoc=loadXML(url);
                 var content=processXml(xmlDoc);
-                var win=window.open();
+                var win=window.open('','','scrollbars=yes');
+      
                 win.document.write(content);
             }
             
@@ -56,8 +57,9 @@
                 table=table+"<td>"+(i+1)+"</td>";
             }
             function addName(xmlDoc,i){
-//              var Name=title[1].firstChild.nodeValue;
-                table=table+"<td>"+xmlDoc.getElementsByTagName("Newspaper")[i].firstChild.nodeValue+"</td>";
+
+                table=table+"<td>"
+                    +xmlDoc.getElementsByTagName("Newspaper")[i].firstChild.nodeValue+"</td>";
             }
             function addLocation(xmlDoc,i){
                 table=table+"<td><ul>";
