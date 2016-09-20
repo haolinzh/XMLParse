@@ -7,13 +7,17 @@
             var title;
  
             function Main(){               
-                url=document.getElementById("dest").value;              
-                xmlDoc=loadXML(url);
-                var content=processXml(xmlDoc);
- 
-                if(content!="NoEntries"){
-                var win=window.open('','','scrollbars=yes');
-                win.document.write(content);
+                url=document.getElementById("dest").value; 
+                if(url.length==0)
+                    alert("Nothing input")
+                else{
+                    xmlDoc=loadXML(url);
+                    var content=processXml(xmlDoc);
+    
+                    if(content!="NoEntries"){
+                    var win=window.open('','','scrollbars=yes');
+                    win.document.write(content);
+                    }
                 }
             }
             
