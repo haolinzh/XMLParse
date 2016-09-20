@@ -11,7 +11,6 @@
                 xmlDoc=loadXML(url);
                 var content=processXml(xmlDoc);
                 var win=window.open('','','scrollbars=yes');
-      
                 win.document.write(content);
             }
             
@@ -79,25 +78,69 @@
             }
             
             function addLocation(xmlDoc,i){
-                table=table+"<td><ul>";
                 var cityvalue;
                 var statevalue;
-                var city=xmlDoc.getElementsByTagName("City");
-                var state=xmlDoc.getElementsByTagName("State");
+                table=table+"<td><ul>";
+                var location=xmlDoc.getElementsByTagName("Location");
                 
-                if(city[i].innerHTML=="")
-                    cityvalue="N.A.";
-                else
-                    cityvalue=city[i].firstChild.nodeValue;
-                table=table+"<li>"+cityvalue+"</li>";
+                var number=location[i].childElementCount;
+                var x=location[3];
+                var y=x.firstElementChild.nodeName;
+                var z=x.firstElementChild.firstChild.nodeValue;
+                var l=x.lastElementChild.firstChild.nodeValue;
                 
-                if(state[i].innerHTML=="")
-                    statevalue="N.A.";
-                else
-                    statevalue=state[i].firstChild.nodeValue;
-                table=table+"<li>"+statevalue+"</li>";
+                if(number==0)
+                    {
+                        table=table+"N.A.";
+                    }
+                if(number==2)
+                    {   
+                        if(location[i].firstElementChild.innerHTML=="")
+                        cityvalue="N.A."
+                        else
+                        cityvalue=location[i].firstElementChild.firstChild.nodeValue;
+                        
+                        if(location[i].firstElementChild.innerHTML=="")
+                        statevalue="N.A."
+                        else
+                        statevalue=location[i].lastElementChild.firstChild.nodeValue;
+                        
+                        table=table+"<li>"+cityvalue+"</li>";
+                        table=table+"<li>"+statevalue+"</li>";    
+                    }
+                if(number==1){
+                    if(location[i].firstElementChild.nodeName=="City"){
+                        cityvalue=location[i].firstElementChild.firstChild.nodeValue;
+                        table=table+"<li>"+cityvalue+"</li>";
+                    }
+                    if(location[i].firstElementChild.nodeName=="State"){
+                        statevalue=location[i].firstElementChild.firstChild.nodeValue;
+                        table=table+"<li>"+cityvalue+"</li>";
+                    }
+                }
                 
-                table=table+"</ul></td>";
+                table=table+"</ul></td>"
+                
+                
+                
+//                var cityvalue;
+//                var statevalue;
+//                var city=xmlDoc.getElementsByTagName("City");
+//                var state=xmlDoc.getElementsByTagName("State");
+//                
+//                if(city[i].innerHTML=="")
+//                    cityvalue="N.A.";
+//                else
+//                    cityvalue=city[i].firstChild.nodeValue;
+//                table=table+"<li>"+cityvalue+"</li>";
+//                
+//                if(state[i].innerHTML=="")
+//                    statevalue="N.A.";
+//                else
+//                    statevalue=state[i].firstChild.nodeValue;
+//                table=table+"<li>"+statevalue+"</li>";
+//                
+//                table=table+"</ul></td>";
             }
             function addHomePage(xmlDoc,i){
                 table=table+"<td>";
