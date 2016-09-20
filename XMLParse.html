@@ -10,8 +10,11 @@
                 url=document.getElementById("dest").value;              
                 xmlDoc=loadXML(url);
                 var content=processXml(xmlDoc);
+ 
+                if(content!="NoEntries"){
                 var win=window.open('','','scrollbars=yes');
                 win.document.write(content);
+                }
             }
             
             
@@ -22,14 +25,20 @@
                 addTitle(xmlDoc);
                                 
                 var total=xmlDoc.getElementsByTagName("Row");
-              
-                for(i=1;i<=total.length;i++){
-                    
-                    addItem(xmlDoc,i-1);
+               
+                if(total.length==0){
+                    alert("No company entries in XML")
+                    return "NoEntries"
                 }
-                table=table+"</table>";
-                display=display+table+"</body></html>";
-                return display;
+                else{
+                    for(i=1;i<=total.length;i++){
+                    
+                        addItem(xmlDoc,i-1);
+                    }
+                    table=table+"</table>";
+                    display=display+table+"</body></html>";
+                    return display;
+                }
             }
             
             function addTitle(xmlDoc){
@@ -84,10 +93,6 @@
                 var location=xmlDoc.getElementsByTagName("Location");
                 
                 var number=location[i].childElementCount;
-                var x=location[3];
-                var y=x.firstElementChild.nodeName;
-                var z=x.firstElementChild.firstChild.nodeValue;
-                var l=x.lastElementChild.firstChild.nodeValue;
                 
                 if(number==0)
                     {
