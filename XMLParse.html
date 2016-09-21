@@ -84,7 +84,7 @@
                 table=table+"<td>";
                 var slotvalue;
                 var slot=xmlDoc.getElementsByTagName("Slot");
-                if(slot[i].innerHTML=="")
+                if(slot[i].innerHTML.trim()=="")
                     slotvalue="N.A.";
                 else
                     slotvalue=slot[i].firstChild.nodeValue;
@@ -96,7 +96,7 @@
                 table=table+"<td>";
                 var namevalue;
                 var name=xmlDoc.getElementsByTagName("Newspaper");
-                if(name[i].innerHTML=="")
+                if(name[i].innerHTML.trim()=="")
                     namevalue="N.A.";
                 else
                     namevalue=name[i].firstChild.nodeValue;
@@ -118,12 +118,12 @@
                     }
                 if(number==2)
                     {   
-                        if(location[i].firstElementChild.innerHTML=="")
+                        if(location[i].firstElementChild.innerHTML.trim()=="")
                         cityvalue="N.A."
                         else
                         cityvalue=location[i].firstElementChild.firstChild.nodeValue;
                         
-                        if(location[i].firstElementChild.innerHTML=="")
+                        if(location[i].firstElementChild.innerHTML.trim()=="")
                         statevalue="N.A."
                         else
                         statevalue=location[i].lastElementChild.firstChild.nodeValue;
@@ -151,7 +151,7 @@
                 var pagevalue;
                 
                 var page=xmlDoc.getElementsByTagName("HomePage");
-                if(page[i].innerHTML==""){
+                if(page[i].innerHTML.trim()==""){
                     pagevalue="N.A.";
                     table=table+pagevalue;
                     }
@@ -166,7 +166,7 @@
                 var logovalue;
                 
                 var logo=xmlDoc.getElementsByTagName("Logo")
-                if(logo[i].innerHTML==""){
+                if(logo[i].innerHTML.trim()==""){
                     logovalue="N.A."
                     table=table+logovalue;
                 }
