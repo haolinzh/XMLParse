@@ -24,9 +24,11 @@
                     alert("Nothing input")
                 else{
                     xmlDoc=loadXML(url);
+                    
+                    if(xmlDoc!="FileError")
                     var content=processXml(xmlDoc);
     
-                    if(content!="NoEntries"){
+                    if(content!=undefined){
                     var win=window.open('','','scrollbars=yes');
                     win.document.write(content);
                     }
@@ -44,7 +46,7 @@
                
                 if(total.length==0){
                     alert("No company entries in XML")
-                    return "NoEntries"
+                    return
                 }
                 else{
                     for(i=1;i<=total.length;i++){
@@ -206,8 +208,10 @@
                 }
                 
                 if(xmlhttp.responseXML.documentElement.nodeName=="parsererror")
-                    alert("XMLFile Error");
-                
+                   {
+                       alert("XMLFile Error");
+                       return("FileError")
+                   }
                 var xmlDoc=xmlhttp.responseXML;
                 return xmlDoc;
             }
